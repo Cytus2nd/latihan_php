@@ -1,4 +1,5 @@
 <?php 
+    $title = 'Daftar Barang';
     include 'layout/header.php';
     include 'form-poptambah.php';
     $data_barang = select("SELECT * FROM barang ORDER BY id_barang ASC");
@@ -8,7 +9,7 @@
     <h1>Data Barang</h1>
     <hr>
     <button class="mb-3 btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahDataModal">Tambah Data</button>
-    <table class="table table-bordered table-light table-striped" id="tabel-barang">
+    <table class="table table-bordered table-light table-striped" id="tabel">
         <thead>
             <tr>
                 <th>No</th>

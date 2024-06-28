@@ -6,7 +6,7 @@
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
  
   <script>
-      new DataTable('#tabel-barang');
+      new DataTable('#tabel, #tabel-mhs');
   </script>
   </body>
 </html>

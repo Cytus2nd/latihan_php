@@ -46,3 +46,19 @@
         mysqli_query($db, $query);
         return mysqli_affected_rows($db);
     }
+
+    // create mahasiswa
+    function create_mahasiswa($post) {
+        global $db;
+        $nama = $post['nama'];
+        $prodi = $post['prodi'];
+        $jk = $post['jk'];
+        $telepon = $post['telepon'];
+        $email = $post['email'];
+        $foto = $post['foto'];
+
+        $query = "INSERT INTO mahasiswa VALUES(null, '$nama', '$prodi', '$jk', '$telepon', '$email', '$foto')";
+
+        mysqli_query($db, $query);
+        return mysqli_affected_rows($db);
+    }

@@ -1,4 +1,5 @@
 <?php 
+    $title = 'Ubah Data Barang';
     include 'layout/header.php';
 
     // memanggil id barang dari urls
