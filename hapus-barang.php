@@ -10,7 +10,7 @@ if (delete_barang($id_barang) > 0) {
          </script>";
 } else {
     echo "<script>
-            alert('Data Barang Berhasil dihapus');
+            alert('Data Barang Gagal dihapus');
             document.location.href = 'index.php';
          </script>";
 }

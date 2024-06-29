@@ -17,9 +17,9 @@
     // function add data barang
     function create_barang($post) {
         global $db;
-        $nama = $post["nama"];
-        $jumlah = $post["jumlah"];
-        $harga = $post["harga"];
+        $nama = strip_tags($post["nama"]);
+        $jumlah = strip_tags($post["jumlah"]);
+        $harga = strip_tags($post["harga"]);
 
         $query = "INSERT INTO `barang`(`nama`, `jumlah`, `harga`) VALUES ('$nama','$jumlah','$harga')";
         mysqli_query($db, $query);
@@ -29,10 +29,10 @@
     // update barang
     function update_barang($post) {
         global $db;
-        $id_barang = $post["id_barang"];
-        $nama = $post["nama"];
-        $jumlah = $post["jumlah"];
-        $harga = $post["harga"];
+        $id_barang = strip_tags($post["id_barang"]);
+        $nama = strip_tags($post["nama"]);
+        $jumlah = strip_tags($post["jumlah"]);
+        $harga = strip_tags($post["harga"]);
 
         $query = "UPDATE barang SET nama = '$nama', jumlah = '$jumlah', harga = '$harga' WHERE id_barang = '$id_barang'";
         mysqli_query($db, $query);
@@ -50,15 +50,66 @@
     // create mahasiswa
     function create_mahasiswa($post) {
         global $db;
-        $nama = $post['nama'];
-        $prodi = $post['prodi'];
-        $jk = $post['jk'];
-        $telepon = $post['telepon'];
-        $email = $post['email'];
-        $foto = $post['foto'];
+        $nama = strip_tags($post['nama']);
+        $prodi = strip_tags($post['prodi']);
+        $jk = strip_tags($post['jk']);
+        $telepon = strip_tags($post['telepon']);
+        $email = strip_tags($post['email']);
+        $foto = upload_file();
+
+        // cek upload
+        if (!$foto) {
+            return false;
+        }
 
         $query = "INSERT INTO mahasiswa VALUES(null, '$nama', '$prodi', '$jk', '$telepon', '$email', '$foto')";
 
+        mysqli_query($db, $query);
+        return mysqli_affected_rows($db);
+    }
+
+    function upload_file() {
+        $namaFile = $_FILES['foto']['name'];
+        $ukuranFile = $_FILES['foto']['size'];
+        $error = $_FILES['foto']['error'];
+        $tmpName = $_FILES['foto']['tmp_name'];
+
+        // cek apakah yang diupload adalah gambar
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+        $ekstensiGambar = explode('.', $namaFile);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+
+        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+            echo "<script>
+                    alert('Yang anda upload bukan gambar');
+                    document.location.href = 'tambah-mahasiswa.php';
+                  </script>";
+            die();
+        }
+
+        // cek jika ukurannya terlalu besar
+        if ($ukuranFile > 2048000) {
+            echo "<script>
+                    alert('Ukuran gambar terlalu besar (MAX 2MB)');
+                    document.location.href = 'tambah-mahasiswa.php';
+                  </script>";
+            return false;
+        }
+
+        // lolos pengecekan, gambar siap diupload
+        // generate nama gambar baru
+        $namaFileBaru = uniqid();
+        $namaFileBaru .= '.';
+        $namaFileBaru .= $ekstensiGambar;
+
+        move_uploaded_file($tmpName, 'assets/img/' . $namaFileBaru);
+
+        return $namaFileBaru;
+    }
+
+    function delete_mahasiswa($id_mahasiswa) {
+        global $db;
+        $query = "DELETE FROM mahasiswa WHERE id_mahasiswa = $id_mahasiswa";
         mysqli_query($db, $query);
         return mysqli_affected_rows($db);
     }

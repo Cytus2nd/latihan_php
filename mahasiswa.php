@@ -30,8 +30,8 @@ $data_mahasiswa = select("SELECT * FROM mahasiswa ORDER BY id_mahasiswa DESC")
                 <td><?= $mahasiswa['telepon']; ?></td>
                 <td width="15%" class="text-center">
                     <a href="detail-mahasiswa.php?id_mahasiswa=<?= $mahasiswa['id_mahasiswa']; ?>" class="btn btn-secondary btn-sm">Detail</a>
-                    <a href="" class="btn btn-success btn-sm">Ubah</a>
-                    <a href="" class="btn btn-danger btn-sm">Hapus</a>
+                    <a href="ubah-mahasiswa.php?id_mahasiswa=<?= $mahasiswa['id_mahasiswa']; ?>"  class="btn btn-success btn-sm">Ubah</a>
+                    <a href="hapus-mahasiswa.php?id_mahasiswa=<?= $mahasiswa['id_mahasiswa']; ?>"  class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin ingin Menghapus ??');">Hapus</a>
                 </td>
             </tr>
             <?php endforeach; ?>

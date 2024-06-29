@@ -20,7 +20,7 @@
     <div class="container mt-4">
         <h1>Tambah Data Mahasiswa</h1>
         <hr>
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama Mahasiswa</label>
                 <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama Mahasiswa..." required>
@@ -54,7 +54,7 @@
             </div>
             <div class="mb-3">
                 <label for="foto" class="form-label">Foto Mahasiswa</label>
-                <input type="text" name="foto" class="form-control" id="foto" placeholder="Upload Foto Mahasiswa..." required>
+                <input type="file" name="foto" class="form-control" id="foto" placeholder="Upload Foto Mahasiswa...">
             </div>
              
             <button type="submit" name="tambah" class="btn btn-primary mt-1" style="float: right;">Tambah Data</button>
