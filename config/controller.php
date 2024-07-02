@@ -68,6 +68,29 @@
         return mysqli_affected_rows($db);
     }
 
+    function update_mahasiswa($post) {
+        global $db;
+        $id_mahasiswa = strip_tags($post['id_mahasiswa']);
+        $nama = strip_tags($post['nama']);
+        $prodi = strip_tags($post['prodi']);
+        $jk = strip_tags($post['jk']);
+        $telepon = strip_tags($post['telepon']);
+        $email = strip_tags($post['email']);
+        $fotoLama = strip_tags($post['fotoLama']);
+
+        // cek upload foto baru atau tidak
+        if ($_FILES['foto']['error'] == 4) {
+            $foto = $fotoLama;
+        } else {
+            $foto = upload_file();
+        }
+
+        $query = "UPDATE mahasiswa SET nama = '$nama', prodi = '$prodi', jk = '$jk', telepon = '$telepon', email = '$email', foto = '$foto' WHERE id_mahasiswa = $id_mahasiswa";
+
+        mysqli_query($db, $query);
+        return mysqli_affected_rows($db);
+    }
+
     function upload_file() {
         $namaFile = $_FILES['foto']['name'];
         $ukuranFile = $_FILES['foto']['size'];
@@ -109,7 +132,13 @@
 
     function delete_mahasiswa($id_mahasiswa) {
         global $db;
+
+        // ambil gambar/foto
+        $foto = select("SELECT * FROM mahasiswa WHERE id_mahasiswa = $id_mahasiswa")[0];
+        unlink("assets/img/".$foto['foto']);
+
         $query = "DELETE FROM mahasiswa WHERE id_mahasiswa = $id_mahasiswa";
         mysqli_query($db, $query);
         return mysqli_affected_rows($db);
     }
+
