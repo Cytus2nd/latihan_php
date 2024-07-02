@@ -22,7 +22,7 @@
       <div class="navbar-nav">
         <a class="nav-link text-light" href="index.php">Barang</a>
         <a class="nav-link text-light" href="mahasiswa.php">Mahasiswa</a>
-        <a class="nav-link text-light" href="#">Modal</a>
+        <a class="nav-link text-light" href="#">Akun</a>
       </div>
     </div>
   </div>
