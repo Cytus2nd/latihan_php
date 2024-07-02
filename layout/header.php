@@ -14,7 +14,7 @@
   <body>
   <nav class="navbar navbar-expand-lg bg-primary">
   <div class="container">
-    <a class="navbar-brand text-light fw-bold" href="#">CRUD PHP</a>
+    <a class="navbar-brand text-light fw-bold" href="">CRUD PHP</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,7 +22,7 @@
       <div class="navbar-nav">
         <a class="nav-link text-light" href="index.php">Barang</a>
         <a class="nav-link text-light" href="mahasiswa.php">Mahasiswa</a>
-        <a class="nav-link text-light" href="#">Akun</a>
+        <a class="nav-link text-light" href="crud-modal.php">Akun</a>
       </div>
     </div>
   </div>
