@@ -11,7 +11,7 @@ if(!isset($_SESSION['login'])) {
 }
 
 // membatasi halaman sesuai user login
-if ($_SESSION['level'] != 1 OR $_SESSION['level'] != 2) {
+if ($_SESSION['level'] != 1 AND $_SESSION['level'] != 2) {
     echo "<script>
             document.location.href = 'crud-modal.php'
           </script>";

@@ -8,6 +8,14 @@ if(!isset($_SESSION['login'])) {
     exit;
 }
 
+// membatasi halaman sesuai user login
+if ($_SESSION['level'] != 1 AND $_SESSION['level'] != 3) {
+    echo "<script>
+            document.location.href = 'crud-modal.php'
+          </script>";
+    exit;
+}
+
 $title = 'Daftar Mahasiswa';
 include 'layout/header.php';
 $data_mahasiswa = select("SELECT * FROM mahasiswa ORDER BY id_mahasiswa DESC")

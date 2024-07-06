@@ -27,9 +27,13 @@
           </li>
           <?php endif; ?>
           
+          <?php if($_SESSION['level'] == 1 OR $_SESSION['level'] == 3) : ?>
           <li class="nav-item">
             <a class="nav-link text-light" href="mahasiswa.php">Mahasiswa</a>
           </li>
+          <?php endif; ?>
+
+
           <li class="nav-item">
             <a class="nav-link text-light" href="crud-modal.php">Akun</a>
           </li>
@@ -38,7 +42,7 @@
 
     <div>
       <a class="navbar-brand text-light">Hai, <span class="fw-bold"><?= $_SESSION['nama']; ?> !</span></a>
-      <a href="logout.php" class="btn btn-sm btn-danger"><i class="fas fa-sign-out-alt"></i></a>
+      <a href="logout.php" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda Yakin ingin Logout?')"><i class="fas fa-sign-out-alt"></i></a>
     </div>
   </div>
 </nav>
