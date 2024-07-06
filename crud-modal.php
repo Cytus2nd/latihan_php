@@ -1,4 +1,13 @@
 <?php 
+session_start();
+
+if(!isset($_SESSION['login'])) {
+    echo "<script>
+            document.location.href = 'login.php'
+          </script>";
+    exit;
+}
+
     $title = 'Daftar Akun';
     include 'layout/header.php';
     $data_akun = select("SELECT * FROM akun");

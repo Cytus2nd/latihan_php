@@ -1,5 +1,14 @@
 <?php 
+session_start();
+
 include 'config/app.php';
+
+if(!isset($_SESSION['login'])) {
+    echo "<script>
+            document.location.href = 'login.php'
+          </script>";
+    exit;
+}
 
 // menerima id
 $id_barang = (int)$_GET['id_barang'];

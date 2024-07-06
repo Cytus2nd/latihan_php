@@ -1,4 +1,13 @@
 <?php 
+session_start();
+
+if(!isset($_SESSION['login'])) {
+    echo "<script>
+            document.location.href = 'login.php'
+          </script>";
+    exit;
+}
+
     if(isset($_POST['tambah'])){
         if(create_barang($_POST) > 0) {
             echo "<script>

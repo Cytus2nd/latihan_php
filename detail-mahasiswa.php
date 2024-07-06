@@ -1,4 +1,12 @@
 <?php 
+session_start();
+
+if(!isset($_SESSION['login'])) {
+    echo "<script>
+            document.location.href = 'login.php'
+          </script>";
+    exit;
+}
 $title = 'Detail Mahasiswa';
 include 'layout/header.php';
 
@@ -37,7 +45,7 @@ $mahasiswa = select("SELECT * FROM mahasiswa WHERE id_mahasiswa = $id_mahasiswa"
             <td><a href="assets/img/<?= $mahasiswa['foto']; ?>"><img src="assets/img/<?= $mahasiswa['foto']; ?>" alt="foto" width="30%"></a></td>
         </tr>
     </table>
-    <a href="mahasiswa.php" class="btn btn-secondary btn-sm" style="float:right;">Kembali</a>
+    <a href="mahasiswa.php" class="btn btn-secondary btn-sm" style="float:right;"><i class="fas fa-caret-left"></i> Kembali</a>
 </section>
 
 <?php include 'layout/footer.php'; ?>

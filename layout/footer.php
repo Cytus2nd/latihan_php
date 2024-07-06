@@ -5,8 +5,13 @@
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
  
-  <script>
-      new DataTable('#tabel, #tabel-mhs');
-  </script>
+<!-- font awesome -->
+<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+
+<!-- call data tables -->
+<script>
+    new DataTable('#tabel, #tabel-mhs');
+</script>
+
   </body>
 </html>

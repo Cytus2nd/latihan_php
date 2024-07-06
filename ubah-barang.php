@@ -1,4 +1,13 @@
 <?php 
+    session_start();
+
+    if(!isset($_SESSION['login'])) {
+        echo "<script>
+                document.location.href = 'login.php'
+              </script>";
+        exit;
+    }
+    
     $title = 'Ubah Data Barang';
     include 'layout/header.php';
 

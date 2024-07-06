@@ -1,5 +1,14 @@
 <?php 
+    session_start();
+
     include 'layout/header.php';
+
+    if(!isset($_SESSION['login'])) {
+        echo "<script>
+                document.location.href = 'login.php'
+              </script>";
+        exit;
+    }
 
     if(isset($_POST['tambah'])){
         if(create_barang($_POST) > 0) {
@@ -26,7 +35,7 @@
             </div>
             <div class="mb-3">
                 <label for="jumlah" class="form-label">Jumlah Barang</label>
-                <input type="number" name="jumlah" class="form-control" id="jumlah" placeholder="Jumlah Barang..." required>
+                <input type="number" name="jumlah" class="form-control" id="jumlah" placeholder="Jumlah Barang...">
             </div>
             <div class="mb-3">
                 <label for="harga" class="form-label">Harga Barang</label>
@@ -35,7 +44,7 @@
             <button type="submit" name="tambah" class="btn btn-primary mt-1" style="float: right;">Tambah Data</button>
         </form>
     </div>
-
+    
 <?php 
     include 'layout/footer.php';
 ?>
