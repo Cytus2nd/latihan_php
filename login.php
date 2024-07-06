@@ -128,8 +128,7 @@ if (isset($_POST['login'])) {
   <body class="d-flex align-items-center py-4 bg-body-tertiary">
 <main class="form-signin w-100 m-auto text-center">
   <form action="" method="POST">
-      <h3 class="mb-3"><i class="fas fa-sign-in-alt"></i> Login</h3>
-      <h1 class="h3 mb-4 fw-normal">Admin Login</h1>
+      <h3 class="mb-3"><i class="fas fa-sign-in-alt"></i> Admin Login</h3>
       <?php if(isset($error)) : ?>
         <div class="alert alert-danger text-center">
           <b>Username Atau Password Salah</b>

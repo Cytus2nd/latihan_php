@@ -10,6 +10,14 @@ if(!isset($_SESSION['login'])) {
     exit;
 }
 
+// membatasi halaman sesuai user login
+if ($_SESSION['level'] != 1 OR $_SESSION['level'] != 2) {
+    echo "<script>
+            document.location.href = 'crud-modal.php'
+          </script>";
+    exit;
+}
+
     $title = 'Daftar Barang';
     include 'layout/header.php';
     include 'form-poptambah.php';

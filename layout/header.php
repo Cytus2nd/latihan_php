@@ -19,11 +19,26 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link text-light" href="index.php">Barang</a>
-        <a class="nav-link text-light" href="mahasiswa.php">Mahasiswa</a>
-        <a class="nav-link text-light" href="crud-modal.php">Akun</a>
-      </div>
+        <ul class="navbar-nav">
+
+          <?php if($_SESSION['level'] == 1 OR $_SESSION['level'] == 2) : ?>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="index.php">Barang</a>
+          </li>
+          <?php endif; ?>
+          
+          <li class="nav-item">
+            <a class="nav-link text-light" href="mahasiswa.php">Mahasiswa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="crud-modal.php">Akun</a>
+          </li>
+        </ul>
+    </div>
+
+    <div>
+      <a class="navbar-brand text-light">Hai, <span class="fw-bold"><?= $_SESSION['nama']; ?> !</span></a>
+      <a href="logout.php" class="btn btn-sm btn-danger"><i class="fas fa-sign-out-alt"></i></a>
     </div>
   </div>
 </nav>
