@@ -8,30 +8,40 @@ if (isset($_POST['login'])) {
   $username = mysqli_real_escape_string($db, $_POST['username']);
   $password = mysqli_real_escape_string($db, $_POST['password']);
 
-  // cek usn
-  $result = mysqli_query($db, "SELECT * FROM akun WHERE username='$username'");
+  // sevret key
+  $secret_key = "6LdHPQoqAAAAAJcDz-ICa5ZmTKEMkuYJ03RnhfVP";
+  $verifikasi = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='. $secret_key .'&response=' .$_POST['g-recaptcha-response']);
+    $response = json_decode($verifikasi);
 
-  // jika ada user
-  if (mysqli_num_rows($result) == 1) {
-    //cek pass 
-    $hasil = mysqli_fetch_assoc($result);
+  if ($response->success) {
+    // cek usn
+    $result = mysqli_query($db, "SELECT * FROM akun WHERE username='$username'");
 
-    if(password_verify($password, $hasil['password'])) {
-      // set sessions
-      $_SESSION['login'] = true;
-      $_SESSION['id_akun'] = $hasil['id_akun'];
-      $_SESSION['nama'] = $hasil['nama'];
-      $_SESSION['username'] = $hasil['username'];
-      $_SESSION['email'] = $hasil['email'];
-      $_SESSION['level'] = $hasil['level'];
+    // jika ada user
+    if (mysqli_num_rows($result) == 1) {
+      //cek pass 
+      $hasil = mysqli_fetch_assoc($result);
 
-      // jika login benar arahkan ke file index
-      header('location: index.php');
-      exit;
-    };
+      if(password_verify($password, $hasil['password'])) {
+        // set sessions
+        $_SESSION['login'] = true;
+        $_SESSION['id_akun'] = $hasil['id_akun'];
+        $_SESSION['nama'] = $hasil['nama'];
+        $_SESSION['username'] = $hasil['username'];
+        $_SESSION['email'] = $hasil['email'];
+        $_SESSION['level'] = $hasil['level'];
+
+        // jika login benar arahkan ke file index
+        header('location: index.php');
+        exit;
+      } else {
+        // jika tidak ada user/login salah
+        $error = true;
+      }
+    }
+  } else {
+    $errorRecaptcha = true;
   }
-  // jika tidak ada user/login salah
-  $error = true;
 }
 ?>
 
@@ -134,6 +144,13 @@ if (isset($_POST['login'])) {
           <b>Username Atau Password Salah</b>
         </div>
       <?php endif; ?>
+
+      <?php if(isset($errorRecaptcha)) : ?>
+        <div class="alert alert-danger text-center">
+          <b>Recaptcha Tidak Valid</b>
+        </div>
+      <?php endif; ?>
+
     <div class="form-floating">
       <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Masukkan Username...." required>
       <label for="floatingInput">Username</label>
@@ -142,12 +159,17 @@ if (isset($_POST['login'])) {
       <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Masukkan Password...." required>
       <label for="floatingPassword">Password</label>
     </div>
+    <div class="mb-3">
+      <div class="g-recaptcha" data-sitekey="6LdHPQoqAAAAALzLOqg4ic1ZPsZ5LMrzUyO16cP4">
+      </div>
+    </div>
     <button class="btn btn-primary w-100 py-2" type="submit" name="login">Login</button>
     <p class="mt-5 mb-3 text-body-secondary">&copy; cytus-<?= date('Y') ?></p>
   </form>
 </main>
 <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 
     </body>
 </html>

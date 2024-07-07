@@ -1,0 +1,20 @@
+# menyembuniykan list file/direktori
+Options -Indexes
+
+# menyembunyikan signature/tanda server
+ServerSignature Off
+
+# memblokir/white list ip address
+Order Allow,Deny
+    Allow from 127.0.0.1
+Allow from All
+
+# menghilangkan ektensi file di url
+<IfModule mod_rewrite.c>
+    RewriteEngine On 
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.*)$ $1.php
+</IfModule>
+
+# 

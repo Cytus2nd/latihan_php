@@ -23,19 +23,19 @@
 
           <?php if($_SESSION['level'] == 1 OR $_SESSION['level'] == 2) : ?>
           <li class="nav-item">
-            <a class="nav-link text-light" href="index.php">Barang</a>
+            <a class="nav-link text-light" href="index">Barang</a>
           </li>
           <?php endif; ?>
           
           <?php if($_SESSION['level'] == 1 OR $_SESSION['level'] == 3) : ?>
           <li class="nav-item">
-            <a class="nav-link text-light" href="mahasiswa.php">Mahasiswa</a>
+            <a class="nav-link text-light" href="mahasiswa">Mahasiswa</a>
           </li>
           <?php endif; ?>
 
 
           <li class="nav-item">
-            <a class="nav-link text-light" href="crud-modal.php">Akun</a>
+            <a class="nav-link text-light" href="crud-modal">Akun</a>
           </li>
         </ul>
     </div>
