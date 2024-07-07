@@ -2,7 +2,6 @@
 
 session_start();
 
-
 if(!isset($_SESSION['login'])) {
     echo "<script>
             document.location.href = 'login.php'

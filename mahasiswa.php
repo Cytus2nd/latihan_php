@@ -26,6 +26,7 @@ $data_mahasiswa = select("SELECT * FROM mahasiswa ORDER BY id_mahasiswa DESC")
     <hr>
     <a href="tambah-mahasiswa.php" class="mb-3 btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah Data</a>
     <a href="download-excel-mahasiswa.php" class="mb-3 btn btn-success"><i class="fas fa-file-excel"></i> Download Excel</a>
+    <a href="download-pdf-mahasiswa.php" class="mb-3 btn btn-danger"><i class="fas fa-file-pdf"></i> Download PDF</a>
     <table class="table table-bordered table-light table-striped" id="tabel-mhs">
         <thead>
             <tr>
